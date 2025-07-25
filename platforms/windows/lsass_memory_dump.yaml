@@ -1,0 +1,7 @@
+// LSASS Memory Dump Attempts
+let lsass_dump_attempts = 
+#event_simpleName=ProcessRollup2
+| (ImageFileName ends with "procdump.exe" or ImageFileName ends with "rundll32.exe" or ImageFileName ends with "powershell.exe")
+| (CommandLine contains "lsass" or CommandLine contains "MiniDumpWriteDump" or CommandLine contains "createfile" or CommandLine contains "writefile")
+| eval detection_type="LSASS_Memory_Dump"
+| select([timestamp, ComputerName, UserName, ImageFileName, CommandLine, ParentBaseFileName, detection_type]);

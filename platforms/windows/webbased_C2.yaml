@@ -1,0 +1,8 @@
+// Web-based Command and Control Traffic
+let web_c2_traffic = 
+#event_simpleName=NetworkConnect
+| (RemotePort in [80, 443])
+| Protocol="6" // TCP
+| (Uri contains ".aspx" or Uri contains "cmd=" or Uri contains "shell")
+| eval detection_type="Web_C2_Traffic"
+| select([timestamp, ComputerName, LocalIP, RemoteIP, RemotePort, Uri, detection_type]);

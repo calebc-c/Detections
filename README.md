@@ -9,9 +9,9 @@ This is an ongoing work in progress. New materials will be uploaded regularly as
 This repository is organized by platform, SIEM tools, and threat categories 
 
 ### Platforms
-- **Windows**: Sysmon, Event Logs, PowerShell
-- **Linux**: syslog, process monitoring
-- **macOS**: Endpoint Security framework
+- **Windows**: Windows-specific detection rules and queries
+- **Linux**:  Linux-focused detection content
+- **macOS**: macOS detection rules and hunting queries
 - **Cloud**: AWS, Azure, GCP
 - **Network**: Snort, NetFlow (Stealth Watch)
 

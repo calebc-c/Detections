@@ -1,0 +1,7 @@
+// PowerShell Code Injection Techniques
+let powershell_code_injection = 
+#event_simpleName=ProcessRollup2
+| (CommandLine contains "IEX" or CommandLine contains "FromBase64String" or CommandLine contains "Invoke-Expression" or CommandLine contains "Invoke-Command")
+| ParentBaseFileName="powershell.exe"
+| eval detection_type="PowerShell_Code_Injection"
+| select([timestamp, ComputerName, UserName, ImageFileName, CommandLine, ParentBaseFileName, detection_type]);

@@ -1,0 +1,8 @@
+// Suspicious PowerShell Script Execution
+let powershell_script_execution = 
+#event_simpleName=ScriptControl
+| (ScriptContent contains "IEX" or ScriptContent contains "FromBase64String" or ScriptContent contains "Invoke-Expression" or ScriptContent contains "Start-Process")
+| (ScriptContent contains "hidden" or ScriptContent contains "noprofile" or ScriptContent contains "unrestricted")
+| (ScriptContent contains "DownloadString" or ScriptContent contains "DownloadFile")
+| eval detection_type="Malicious_PowerShell_Script"
+| select([timestamp, ComputerName, UserName, ScriptContent, detection_type]);

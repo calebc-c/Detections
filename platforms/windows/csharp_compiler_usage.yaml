@@ -1,0 +1,6 @@
+// C# Compiler Usage (Dynamic Assembly Compilation)
+let csharp_compiler_usage = 
+#event_simpleName=ProcessRollup2
+| ImageFileName ends with "csc.exe"
+| eval detection_type="CSharp_Compiler_Usage"
+| select([timestamp, ComputerName, UserName, ImageFileName, CommandLine, ParentBaseFileName, detection_type]);

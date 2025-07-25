@@ -1,0 +1,8 @@
+// Suspicious File Uploads to SharePoint
+let iis_uploads = 
+#event_simpleName=HTTPRequest
+| (Uri ends with ".aspx" or Uri ends with ".dll" or Uri ends with ".exe" or Uri ends with ".ps1")
+| (Uri contains "spinstall" or Uri contains "upload")
+| (Method in ["POST", "PUT", "OPTIONS"])
+| eval detection_type="Suspicious_File_Upload"
+| select([timestamp, ComputerName, RemoteIP, LocalIP, Uri, Method, UserAgent, detection_type]);

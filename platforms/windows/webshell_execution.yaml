@@ -1,0 +1,7 @@
+// Web Shell Execution (w3wp.exe spawning shells)
+let webshell_execution = 
+#event_simpleName=ProcessRollup2
+| ParentBaseFileName="w3wp.exe"
+| (ImageFileName ends with "cmd.exe" or ImageFileName ends with "powershell.exe")
+| eval detection_type="WebShell_Execution"
+| select([timestamp, ComputerName, UserName, ImageFileName, CommandLine, ParentBaseFileName, detection_type]);
